@@ -1,6 +1,6 @@
 import csv
 import json
-from datetime import date, datetime, timedelta, timezone
+from datetime import datetime, timedelta
 
 from apscheduler.job import Job
 from django.contrib import admin, messages
@@ -12,6 +12,7 @@ from django_apscheduler.models import DjangoJob
 
 from khoj.database.models import (
     Agent,
+    ChatApiProvider,
     ChatModelOptions,
     ClientApplication,
     Conversation,
@@ -19,7 +20,6 @@ from khoj.database.models import (
     GithubConfig,
     KhojUser,
     NotionConfig,
-    OpenAIProcessorConversationConfig,
     ProcessLock,
     ReflectiveQuestion,
     SearchModelConfig,
@@ -215,8 +215,8 @@ class TextToImageModelOptionsAdmin(admin.ModelAdmin):
     search_fields = ("id", "model_name", "model_type")
 
 
-@admin.register(OpenAIProcessorConversationConfig)
-class OpenAIProcessorConversationConfigAdmin(admin.ModelAdmin):
+@admin.register(ChatApiProvider)
+class ChatApiProviderAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "name",
